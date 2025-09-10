@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p id="counter">1</p>
+
+  <button onclick="doublenumber()">double</button>
+  <button onclick="increase1(1)">increase by 1</button>
+  <button onclick="reset1()">reset to 1</button>
+  <button onclick="increase1(5)">increaseby5</button>
+
+  <script>
+    let count = 1
+  
+
+    function doublenumber(){
+      count = count *2;
+      document.getElementById('counter').innerHTML = count;
+
+  
+    }
+
+    function increase1 (increase){
+      count = count + increase;
+      document.getElementById('counter').innerHTML = count;
+      if(count === 20){
+      alert('you win!')
+    }  
+    }
+
+    function reset1(){
+      count = 1;
+      document.getElementById('counter').innerHTML = count;
+    }
+
+   
+
+
+  </script>
+</body>
+</html>
