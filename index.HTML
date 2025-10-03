@@ -5,114 +5,123 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 
-    <style>
-      .colorSelectionDiv{
-        display: flex;
-        flex-direction: row;
-        cursor: pointer;
-      }
+  <style>
+    html{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-      .pink{
-        height: 100px;
-        width: 100px;
-        border: 3px solid black;
-        background-color: pink;
-        margin-right: 5px;
-      }
+    body{
+      background-color: black;
+    }
 
-      .red{
-        height: 100px;
-        width: 100px;
-        border: 3px solid black;
-        background-color: red;
-      }
+    .stopwatch{
+      margin: 50 px auto;
+      text-align: center;
+    }
 
-      .black{
-        height: 100px;
-        width: 100px;
-        border: 3px solid black;
-        background-color: black;
-        margin-bottom: 50px;
-        margin-left: 5px;
-      }
+    .stopwatch #display {
+      font-size: 80px;
+      font-weight: bold;
+      color: whitesmoke;
+      padding: 10px;
+      margin-bottom: 24px;
+    }
 
-      .button{
-        margin-left: 65px;
-        border-radius: 20px;
-        background-color: black;
-        color: antiquewhite;
-        cursor: pointer;
-        margin-bottom: 50px;
-      }
+    #startbutton{
+      font-size: 16px;
+      padding: 5px 10px;
+      background-color: green;
+      color: whitesmoke;
+      border: none;
+      cursor: pointer;
+      margin-right: 10px;
+    }
 
-      .emptyDivs{
-        display: flex;
-        flex-direction: row;
-      }
+    #pausebutton{
+      font-size: 16px;
+      padding: 5px 10px;
+      background-color: yellow;
+      color: whitesmoke;
+      border: none;
+      cursor: pointer;
+      margin-right: 10px;
+    }
 
-     
-       .emptyDiv1, .emptyDiv2{ 
-        border: 3px solid black;
-        height: 100px;
-        width: 100px;
-        margin-left: 35px;
-        cursor: pointer;
-      }
-
-      .selected {
-        border: 5px solid green;
-      }
-      
-    </style>
+    #resetbutton{
+      font-size: 16px;
+      padding: 5px 10px;
+      background-color: red;
+      color: whitesmoke;
+      border: none;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+  </style>
 </head>
-<body>
-  
-  <div id="colorSelection" class="colorSelectionDiv">
+<body onload="starttimer()">
 
-    <div class="pink" onclick="selectColor('pink')"></div>
-    <div class="red" onclick="selectColor('red')"></div>
-    <div class="black" onclick="selectColor('black')"></div>
+  <!--Set Timeout og Interval
+setTimeout() er en innebygd funksjon i javascript.
 
-  </div>
+Man kan bruke setTimeout() på følgende måte:
 
-  <button onclick="changebkg()" class="button">Change background here!</button>
+setTimeout(doSomething,1000)
+function doSomething(){
+//this method will run after 1000 milliseconds = (one second)
+}
+Når vi kaller setTimeout(parameter1, parameter2) definerer vi hvilken metode som skal kjøre (parameter1) og hvor lenge koden skal vente før den kjører metoden (parameter2)
 
-  <div class="emptyDivs">
+SetTimeout kjører kun en iterasjon, dvs doSomething metoden vil bare kjøre en gang. Dersom man ønsker noe som skjer gjentatte ganger kan man bruke metoden SetInterval() som fungerer på samme måte - men den kjører metoden for hvert intervall du har definert. Feks setInterval(doSomething,1000) -> her vil doSomething metoden kjøre hvert sekund helt frem til man avslutter timeouten.
 
-    <div class="emptyDiv1" onclick="selectBox(this)"></div>
-    <div class="emptyDiv2" onclick="selectBox(this)"></div>
+Man kan stoppe telleren for begge disse funksjonene ved hjelp av metoden clearTimeout() og clearInterval(), men de tar imot navnet på hvilken teller de skal avslutte som parameter- så da forutsettes det at man lagrer interval/timeoutfunksjonen i en variabel.
 
-  </div>
+const myTimer = setInterval(doSomething,1000)
+clearInterval(myTimer)-->
 
 
-  <script>
+<div class="stopwatch">
+  <div id="display">0</div>
+  <button id="startbutton" onclick="starttimer()">Start</button>
+  <button id="pausebutton" onclick="pausetimer()">Pause</button>
+  <button id="resetbutton" onclick="resettimer()">Reset</button>
+</div>
 
-    let selectedColor = null;
-    let selectedBox = null;
 
-    function selectColor(color) {
-      selectedColor = color;
+<script>
+
+
+  let display = document.getElementById('display')
+  let seconds = 0;
+  let timer = null;
+
+  function countSeconds(){
+    seconds++;
+    display.textContent = seconds;
+  }
+
+  function starttimer(){
+    if (timer === null) {
+      timer = setInterval(countSeconds, 1000);
     }
+  }
 
-    function changebkg() {
-      if (selectedColor) {
-        document.body.style.backgroundColor = selectedColor;
-      }
-    }
+  function pausetimer(){
+    clearInterval (timer);
+    timer = null;
+  }
 
-    function selectBox(box) {
-      if (selectedBox) {
-        selectedBox.classList.remove("selected");
-      }
-      selectedBox = box;
-       selectedBox.classList.add("selected");
+  function resettimer(){
+     clearInterval(timer);
+     timer = null;
+    seconds = 0
+    display.textContent = seconds;
+  }
 
-       if (selectedColor) {
-        selectedBox.style.backgroundColor = selectedColor;
-       }
-    }
 
-  </script>
 
+   
+</script>
 </body>
 </html>
