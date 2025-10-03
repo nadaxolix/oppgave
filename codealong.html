@@ -19,22 +19,29 @@
 
     function doublenumber(){
       count = count *2;
-      document.getElementById('counter').innerHTML = count;
+      updateCount();
 
   
     }
 
     function increase1 (increase){
       count = count + increase;
+      updateCount();
+    }
+    
+    function reset1(){
+      count = 1;
+      updateCount();
+      
+    }
+    
+    function updateCount(){
       document.getElementById('counter').innerHTML = count;
       if(count === 20){
       alert('you win!')
-    }  
+    }else if (count > 20)  {
+      alert('you looose');
     }
-
-    function reset1(){
-      count = 1;
-      document.getElementById('counter').innerHTML = count;
     }
 
    
