@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!---- charAt()
+Funksjonen charAt() henter ut bokstaven, eller tegnet på en gitt indeks- den indeksen er
+ verdien man sender inn som parameter til metoden. I eksemplet ovenfor bruker vi 0 som parameter
+ - dvs vi skal finne tegnet på index 0. firstName.charAt(0) returnerer altså bokstaven 'T'. 
+
+ toUpperCase()
+Metoden toUpperCase() skifter alle bokstaver til stor- bokstav. ex
+
+let text = 'Terje is cool';
+text = text.toUpperCase()
+resultat: 'TERJE IS COOL' -->
+
+<div id="terjeDiv">terje</div>
+
+<script>
+ let div = document.getElementById("terjeDiv");
+  div.innerHTML = div.innerHTML.charAt(0).toUpperCase() + div.innerHTML.slice(1);
+</script>
+</body>
+</html>
