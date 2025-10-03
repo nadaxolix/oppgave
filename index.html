@@ -4,25 +4,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .a, .b, .c, .d, .e, .f{
+      background-color: fuchsia;
+      color: white;
+      border: 2px solid black;
+      border-radius: 5px;
+      margin-inline-start: 5px;
+      margin-top: 10px;
+
+    }
+  </style>
 </head>
 <body>
-  <!---- charAt()
-Funksjonen charAt() henter ut bokstaven, eller tegnet på en gitt indeks- den indeksen er
- verdien man sender inn som parameter til metoden. I eksemplet ovenfor bruker vi 0 som parameter
- - dvs vi skal finne tegnet på index 0. firstName.charAt(0) returnerer altså bokstaven 'T'. 
+  <div id="keybordDiv"></div>
 
- toUpperCase()
-Metoden toUpperCase() skifter alle bokstaver til stor- bokstav. ex
+  <button class="a" onclick="selectLetter(this)">A</button>
+  <button class="b" onclick="selectLetter(this)">B</button>
+  <button class="c" onclick="selectLetter(this)">C</button>
+  <br>
+  <button class="d" onclick="selectLetter(this)">D</button>
+  <button class="e" onclick="selectLetter(this)">E</button>
+  <button class="f" onclick="selectLetter(this)">F</button>
 
-let text = 'Terje is cool';
-text = text.toUpperCase()
-resultat: 'TERJE IS COOL' -->
+  <script>
 
-<div id="terjeDiv">terje</div>
+    let outPut = document.getElementById('keybordDiv');
+    let chosenLetter = 0;
 
-<script>
- let div = document.getElementById("terjeDiv");
-  div.innerHTML = div.innerHTML.charAt(0).toUpperCase() + div.innerHTML.slice(1);
-</script>
+
+    function selectLetter(element) {
+      chosenLetter = element.innerText;
+      outPut.innerHTML = chosenLetter;
+    }
+  </script>
 </body>
 </html>
