@@ -5,37 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    .a, .b, .c, .d, .e, .f{
-      background-color: fuchsia;
-      color: white;
-      border: 2px solid black;
-      border-radius: 5px;
-      margin-inline-start: 5px;
-      margin-top: 10px;
 
+    .lightDiv{
+      width: 200px;
+      height: 200px;
+      background-color: darkgray;
+      border-radius: 100px;
+      margin-top: 30px;
+      margin-left: 37px;
+    }
+
+    .switchButton{
+      margin-top: 30px;
+      margin-left: 80px;
+      padding: 7px;
+      font-size: large;
+      border: 2px solid darkgray;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #outPutDiv{
+      margin-top: 30px;
+      margin-left: 90px;
+      background-color: rgb(224, 218, 218);
+      width: 80px;
+      padding: 5px;
+      border: 2px solid darkgray;
+      padding-left: 10px;
+    }
+
+    .yellow{
+      background-color: yellow;
     }
   </style>
 </head>
 <body>
-  <div id="keybordDiv"></div>
+  <div id="lightBulb" class="lightDiv"></div>
 
-  <button class="a" onclick="selectLetter(this)">A</button>
-  <button class="b" onclick="selectLetter(this)">B</button>
-  <button class="c" onclick="selectLetter(this)">C</button>
-  <br>
-  <button class="d" onclick="selectLetter(this)">D</button>
-  <button class="e" onclick="selectLetter(this)">E</button>
-  <button class="f" onclick="selectLetter(this)">F</button>
+  <div id="outPutDiv">light is off</div>
+
+  <button class="switchButton" onclick="lightOnOff()">switch on/off</button>
+
 
   <script>
 
-    let outPut = document.getElementById('keybordDiv');
-    let chosenLetter = 0;
+    let lightIsOn = false;
+    let outPutDiv = document.getElementById('outPutDiv');
 
-
-    function selectLetter(element) {
-      chosenLetter = element.innerText;
-      outPut.innerHTML = chosenLetter;
+    function lightOnOff(){
+     
+      if (lightIsOn === false){
+        document.getElementById('lightBulb').classList.add('yellow')
+        lightIsOn = true
+        outPutDiv.innerHTML = ('light is onnn')
+      } else{
+        document.getElementById('lightBulb').classList.remove('yellow')
+        lightIsOn = false
+        outPutDiv.innerHTML = 'light is off'
+      }
     }
   </script>
 </body>
