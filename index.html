@@ -5,66 +5,72 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-
-    .lightDiv{
+    .crocImg{
       width: 200px;
-      height: 200px;
-      background-color: darkgray;
-      border-radius: 100px;
-      margin-top: 30px;
-      margin-left: 37px;
-    }
-
-    .switchButton{
-      margin-top: 30px;
-      margin-left: 80px;
-      padding: 7px;
-      font-size: large;
-      border: 2px solid darkgray;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    #outPutDiv{
-      margin-top: 30px;
-      margin-left: 90px;
-      background-color: rgb(224, 218, 218);
-      width: 80px;
-      padding: 5px;
-      border: 2px solid darkgray;
-      padding-left: 10px;
-    }
-
-    .yellow{
-      background-color: yellow;
     }
   </style>
 </head>
 <body>
-  <div id="lightBulb" class="lightDiv"></div>
+  <div id="points">Points:</div>
 
-  <div id="outPutDiv">light is off</div>
+  <img class="crocImg" src="original-98ed7f213193f196a84e62bfb926e909.webp"> 
 
-  <button class="switchButton" onclick="lightOnOff()">switch on/off</button>
+  <div id="firstNumber"></div>
 
+  <input id="answerInput" type="text"></input>
+
+  <div id="secondNumber"></div>
+
+  <button onclick="submitAnsw()">Submit</button>
+  <button onclick="resetNumbers()">Reset</button>
 
   <script>
 
-    let lightIsOn = false;
-    let outPutDiv = document.getElementById('outPutDiv');
+    let firstNumb = 0;
+    let secondNumb = 0;
+    let points = 0;
 
-    function lightOnOff(){
-     
-      if (lightIsOn === false){
-        document.getElementById('lightBulb').classList.add('yellow')
-        lightIsOn = true
-        outPutDiv.innerHTML = ('light is onnn')
-      } else{
-        document.getElementById('lightBulb').classList.remove('yellow')
-        lightIsOn = false
-        outPutDiv.innerHTML = 'light is off'
-      }
+    function resetNumbers(){
+      updateNumbers();
+      document.getElementById('answerInput').value = "";
     }
+
+    function updateNumbers(){
+      firstNumb = getRandomNumber();
+      secondNumb = getRandomNumber();
+      document.getElementById('firstNumber').innerHTML = firstNumb;
+      document.getElementById('secondNumber').innerHTML = secondNumb;
+    }
+
+    function getRandomNumber(){
+      return Math.floor(Math.random() * 10) + 1;
+    }
+
+    function submitAnsw(){
+      let userInput = document.getElementById('answerInput').value;
+      let correctAnswer;
+
+      if (firstNumb > secondNumb){
+        correctAnswer = ">";
+      }
+      else if (firstNumb < secondNumb){
+        correctAnswer = "<";
+      }
+      else {
+        correctAnswer = "=";
+      }
+
+      if (userInput == correctAnswer){
+        points++;
+      }
+      else {
+        points--;
+      }
+
+      document.getElementById("points").innerHTML = points;
+    }
+
+    updateNumbers();
   </script>
 </body>
 </html>
